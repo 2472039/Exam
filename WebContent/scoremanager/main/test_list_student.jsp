@@ -1,4 +1,4 @@
-<%-- 学生一覧JSP --%>
+<%-- 学生別成績一覧JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -14,36 +14,36 @@
 <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
 <div class="row border mx-3 mb-3 py-2 align-items-center rounded d-flex" id="filter">
   <!-- 1つ目のフォーム -->
-  <form action="test_list_student.jsp" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center">
+  <form action="/system/scoremanager/main/TestListSubjectExecute.action" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center">
     <div class="col-2">
       <label class="form-label" for="student-f1-select">科目情報</label>
     </div>
     <div class="col-2">
       <label class="form-label" for="student-f1-select">入学年度</label>
-      <select class="form-select" id="student-f1-select" name="f1">
+      <select class="form-select" id="student-f1-select" name="ent_year">
         <option value="0">--------</option>
         <c:forEach var="year" items="${ent_year_set}">
-          <option value="0" <c:if test="${year==f1}">selected</c:if>>-------</option>
+          <option value="${year}" <c:if test="${year==entYearStr}">selected</c:if>>${year}</option>
         </c:forEach>
       </select>
     </div>
 
     <div class="col-2">
       <label class="form-label" for="student-f2-select">クラス</label>
-      <select class="form-select" id="student-f2-select" name="f2">
+      <select class="form-select" id="student-f2-select" name="class_num">
         <option value="0">--------</option>
         <c:forEach var="num" items="${class_num_set}">
-          <option value="0" <c:if test="${num==2}">selected</c:if>>-------</option>
+          <option value="${num}" <c:if test="${num==classNum}">selected</c:if>>${num}</option>
         </c:forEach>
       </select>
     </div>
 
     <div class="col-3">
       <label class="form-label" for="student-f3-select">科目</label>
-      <select class="form-select" id="student-f3-select" name="f3">
+      <select class="form-select" id="student-f3-select" name="subject">
         <option value="0">--------</option>
-        <c:forEach var="subject" items="${class_subject_set}">
-          <option value="0">-------</option>
+        <c:forEach var="subject" items="${subject_list}">
+          <option value="${subject.cd}" <c:if test="${subject.cd==subjectCd}">selected</c:if>>${subject.name}</option>
         </c:forEach>
       </select>
     </div>
@@ -54,7 +54,7 @@
   </form>
 
   <!-- 2つ目のフォーム -->
-  <form action="test_list_student.jsp" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center mt-4">
+  <form action="/system/scoremanager/main/TestListStudentExecute.action" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center mt-4">
     <div class="col-3">
       <label class="form-label" for="student-f1-select">学生情報</label>
     </div>
@@ -72,8 +72,8 @@
 </div>
 
 			<c:choose>
-				<c:when test="${students.size()>0}">
-					<div>氏名：${param.name}(${param.student_no})</div>
+				<c:when test="${student != null}">
+					<div>氏名：${student.name}(${student.no})</div>
 					<table class="table table-hover">
 						<tr>
 							<th>科目名</th>
@@ -83,22 +83,12 @@
 							<th></th>
 							<th></th>
 						</tr>
-						<c:forEach var="test" items="${test}">
+						<c:forEach var="test" items="${testliststudent}">
 							<tr>
-								<td>${test.class_subject_set}</td>
-								<td>${test.subject_cd}</td>
-								<td>${test.count}</td>
+								<td>${test.subjectName}</td>
+								<td>${test.subjectCd}</td>
+								<td>${test.num}</td>
 								<td>${test.point}</td>
-								<td class="text-center">
-									<c:choose>
-										<c:when test="${test.isAttend()}">
-											〇
-										</c:when>
-										<c:otherwise>
-											×
-										</c:otherwise>
-									</c:choose>
-								</td>
 							</tr>
 						</c:forEach>
 					</table>

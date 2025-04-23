@@ -91,7 +91,7 @@ public class TestDAO extends DAO {
         }
         return list;
     }
-    public List<Test> filter (int ent_year, String class_num, int num, Subject subject, School school) throws Exception {
+    public List<Test> filter (int ent_year, String class_num, int no, Subject subject, School school) throws Exception {
         // リストを初期化
         List<Test> list = new ArrayList<>();
 
@@ -101,18 +101,20 @@ public class TestDAO extends DAO {
         PreparedStatement statement = null;
         // リザルトセット
         ResultSet rSet = null;
-        String order = " order by no asc";
         try {
-        	statement = connection.prepareStatement(baseSql +  order);
+        	//  入学年度、クラス、学生番号、氏名、点数
+        	statement = connection.prepareStatement(
+        			"select * from student join test on student.no = test.student_no "
+        			+ "and student.ent_year = ? and student.class_num = ? and test.no = ? "
+        			+ "and test.subject_cd = ? and test.school_cd = ?");
 
-            // プリペアドステートメントに入学年度をバインド
-            statement.setInt(2, ent_year);
-            // プリペアドステートメントにクラス番号をバインド
-            statement.setString(3, class_num);
-            statement.setInt(4, num);
-            statement.setString(5, subject.getCd());
-         // プリペアドステートメントに学校コードをバインド
-            statement.setString(1, school.getCd());
+            // プリペアドステートメントにバインド
+        	statement.setInt(1, ent_year);
+        	statement.setString(2, class_num);
+            statement.setInt(3, no);
+            statement.setString(4, subject.getCd());
+            statement.setString(5, school.getCd());
+
             rSet = statement.executeQuery();
             list = postFilter(rSet, school);
         }catch (Exception e) {

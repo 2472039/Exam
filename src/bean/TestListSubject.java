@@ -25,9 +25,14 @@ public class TestListSubject implements java.io.Serializable{
 		return classNum;
 	}
 
-	public Map<Integer, Integer> getPoints() {
-		return points;
+	public Integer getFirstPoint() {
+	    return points.get(1);
 	}
+
+	public Integer getSecondPoint() {
+	    return points.get(2);
+	}
+
 
 	public void setEntYear(int entYear) {
 		this.entYear = entYear;

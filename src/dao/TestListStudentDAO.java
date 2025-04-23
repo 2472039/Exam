@@ -7,28 +7,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.School;
 import bean.Student;
-import bean.Subject;
 import bean.TestListStudent;
 
 public class TestListStudentDAO extends DAO {
 
-    private String baseSql="select * from student where school_cd=?";
+    private String baseSql="select subject.name, test.subject_cd, test.no, test.point "
+    		+ "from test join subject on test.subject_cd = subject.cd where student_no = ?"
+    		+ "order by subject.name";
         private List<TestListStudent> postFilter(ResultSet rSet) throws Exception {
         // リストを初期化
         List<TestListStudent> list = new ArrayList<>();
         try {
             // リザルトセットを全件走査
-        	SchoolDAO sDao = new SchoolDAO();
-            StudentDAO stDao = new StudentDAO();
-            SubjectDAO sbDao = new SubjectDAO();
             while (rSet.next()) {
                 // インスタンスを初期化
-            	Subject subject = sbDao.get(rSet.getString("subject_cd"), school)
             	TestListStudent tls = new TestListStudent();
-	            tls.setSubjectName(subject.getName());
-	            tls.setSubjectCd(subject.getCd());
+//            	String subject_cd = rSet.getString("subject_cd");
+
+	            tls.setSubjectName(rSet.getString("name"));
+	            tls.setSubjectCd(rSet.getString("subject_cd"));
 	            tls.setNum(rSet.getInt("no"));
 	            tls.setPoint(rSet.getInt("point"));
 
@@ -40,9 +38,9 @@ public class TestListStudentDAO extends DAO {
         }
         return list;
     }
-    public List<Test> filter (int ent_year, String class_num, int num, Subject subject, School school) throws Exception {
+    public List<TestListStudent> filter (Student student) throws Exception {
         // リストを初期化
-        List<Test> list = new ArrayList<>();
+        List<TestListStudent> list = new ArrayList<>();
 
         // コネクションを確立
         Connection connection = getConnection();
@@ -50,20 +48,14 @@ public class TestListStudentDAO extends DAO {
         PreparedStatement statement = null;
         // リザルトセット
         ResultSet rSet = null;
-        String order = " order by no asc";
         try {
-        	statement = connection.prepareStatement(baseSql +  order);
+        	//	studentを使って科目名、科目コード、回数、点数を取得しTestListStudentに、それをリスト化
+        	statement = connection.prepareStatement(baseSql);
 
             // プリペアドステートメントに入学年度をバインド
-            statement.setInt(2, ent_year);
-            // プリペアドステートメントにクラス番号をバインド
-            statement.setString(3, class_num);
-            statement.setInt(4, num);
-            statement.setString(5, subject.getCd());
-         // プリペアドステートメントに学校コードをバインド
-            statement.setString(1, school.getCd());
+        	statement.setString(1, student.getNo());
             rSet = statement.executeQuery();
-            list = postFilter(rSet, school);
+            list = postFilter(rSet);
         }catch (Exception e) {
         	throw e;
         }finally {

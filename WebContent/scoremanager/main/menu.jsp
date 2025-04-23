@@ -21,13 +21,13 @@
 </div>
 <div class="row border mx-3 mb-3 py-2 align-items-center rounded col-3" id="filter">
 <div class="text-center">
-	<a href="/system/scoremanager/main/test_list.jsp">成績管理</a>
+	<p>成績管理</p>
 	</div>
 	<div class="text-center">
-	<a href="/system/scoremanager/main/test_regist.jsp">成績登録</a>
+	<a href="/system/scoremanager/main/TestRegist.action">成績登録</a>
 	</div>
 	<div class="text-center">
-	<a href="/system/scoremanager/main/test_list2.jsp">成績参照</a>
+	<a href="/system/scoremanager/main/TestList.action">成績参照</a>
 	</div>
 </div>
 <div class="row border mx-3 mb-3 py-2 align-items-center rounded col-3" id="filter">
