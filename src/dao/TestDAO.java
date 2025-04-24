@@ -161,15 +161,7 @@ public class TestDAO extends DAO {
                     statement.setInt(5, test.getPoint());
                     statement.setString(6, test.getClass_num());
                 } else {
-                    statement = connection.prepareStatement(
-                    		"update test set point=?, class_num=? where no=? and student_no=? and subject_cd=? and school_cd=?"
-                    );
-                    statement.setInt(1, test.getPoint());
-                    statement.setString(2, test.getClass_num());
-                    statement.setInt(3, test.getNo());
-                    statement.setString(4, test.getStudent().getNo());
-                    statement.setString(5, test.getSubject().getCd());
-                    statement.setString(6, test.getSchool().getCd());
+                	continue;
                 }
 
                 totalCount += statement.executeUpdate();
@@ -193,7 +185,39 @@ public class TestDAO extends DAO {
 
         return totalCount > 0;
     }
-    private boolean save(Test test, Connection connection) throws Exception {
-    	return false;
+    public boolean save(Test test) throws Exception {
+    	Connection connection = getConnection();
+        PreparedStatement statement = null;
+        int count = 0;
+        try {
+        	statement = connection.prepareStatement(
+        			"update test set point=? where student_no=? and subject_cd=? and school_cd=? and no=?"
+        			);
+        	statement.setInt(1, test.getPoint());
+        	statement.setString(2, test.getStudent().getNo());
+        	statement.setString(3, test.getSubject().getCd());
+        	statement.setString(4, test.getSchool().getCd());
+        	statement.setInt(5, test.getNo());
+
+        	// プリペアドステートメントを実行
+            count = statement.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException sqle) {
+                    throw sqle;
+                }
+            }
+        }
+        if (count > 0) {
+            // 実行件数が1件以上ある場合
+            return true;
+        } else {
+            // 実行件数が0件の場合
+            return false;
+        }
     }
 }

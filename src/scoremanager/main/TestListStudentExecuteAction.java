@@ -28,10 +28,13 @@ public class TestListStudentExecuteAction extends Action {
 		String studentNo = req.getParameter("student_no");
 		Student student = sDAO.get(studentNo);
 
-		List<TestListStudent> list = tDAO.filter(student);
+		if (student != null) {
+			List<TestListStudent> list = tDAO.filter(student);
+			session.setAttribute("testliststudent", list);
+		}
 
 		session.setAttribute("student", student);
-		session.setAttribute("testliststudent", list);
+
 
 		// フォワード
 		req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
