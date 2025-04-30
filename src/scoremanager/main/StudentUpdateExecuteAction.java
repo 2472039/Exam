@@ -20,7 +20,6 @@ public void execute(
 
 	HttpSession session = request.getSession();
 	StudentDAO sDAO = new StudentDAO();
-//	Class_numDAO cNumDAO = new Class_numDAO();
 	Teacher teacher = (Teacher) session.getAttribute("user");
 	Student student = new Student();
 
@@ -60,8 +59,6 @@ public void execute(
 
 	// 更新が成功したら完了画面、失敗したらエラー画面を表示
 	if (b) {
-//		List<String> list = cNumDAO.filter(teacher.getSchool());
-//		session.setAttribute("class_num_set", list);
 		request.getRequestDispatcher("student_update_done.jsp").forward(request, response);
 	} else {
 		request.getRequestDispatcher("student_update.jsp").forward(request, response);

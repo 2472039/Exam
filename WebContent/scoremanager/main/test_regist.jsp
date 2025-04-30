@@ -11,7 +11,7 @@
 
 	<c:param name="content">
 <section class="me-4">
-<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
+<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
 <form action="/system/scoremanager/main/TestRegist.action" method="get">
 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 <div class="col-2">
@@ -55,7 +55,6 @@
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
 					</div>
-					<div class="mt-2 text-warning">${errors.get("f1")}</div>
 				</div>
 			</form>
 
@@ -80,7 +79,8 @@
 								<td>${t.class_num}</td>
 								<td>${t.student.no}</td>
 								<td>${t.student.name}</td>
-								<td><input type="text" name="point" placeholder="0～100の範囲で入力してください" value="${t.point}"></td>
+								<td><input type="text" name="point"  value="${t.point}">
+									<br><div class="mt-2 text-warning">${errors.get("f2")}</div></td>
 							</tr>
 						</c:forEach>
 					</table>

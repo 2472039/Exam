@@ -11,7 +11,7 @@
 
 	<c:param name="content">
 <section class="me-4">
-<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
+<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績一覧（科目）</h2>
 <div class="row border mx-3 mb-3 py-2 align-items-center rounded d-flex" id="filter">
   <!-- 1つ目のフォーム -->
   <form action="/system/scoremanager/main/TestListSubjectExecute.action" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center">
@@ -51,6 +51,7 @@
     <div class="col-2 text-center">
       <button class="btn btn-secondary" id="filter-button">検索</button>
     </div>
+    <div class="mt-2 text-warning">${errors.get("f5")}</div>
   </form>
 
   <!-- 2つ目のフォーム -->

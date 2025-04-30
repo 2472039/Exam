@@ -4,7 +4,8 @@
 
 package scoremanager.main;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import bean.Student;
 import bean.Teacher;
-import dao.Class_numDAO;
 import dao.StudentDAO;
 import tool.Action;
 
@@ -23,9 +23,9 @@ public class StudentCreateExecuteAction extends Action {
 
 		HttpSession session = request.getSession();
 		StudentDAO sDAO = new StudentDAO();
-		Class_numDAO cNumDAO = new Class_numDAO();
 		Teacher teacher = (Teacher) session.getAttribute("user");
 		Student student = new Student();
+		Map<String, String> errors = new HashMap<>();
 
 		// 入力された値を取得
 		String inputNo = request.getParameter("inputNo");
@@ -33,24 +33,31 @@ public class StudentCreateExecuteAction extends Action {
 		String inputEntYear = request.getParameter("inputEntYear");
 		String inputClassNum = request.getParameter("inputClassNum");
 
-
+//		System.out.println(inputEntYear);
+		if (inputEntYear.equals("0")) {
+			errors.put("f3","入学年度を選択してください");
+			request.setAttribute("errors", errors);
+			request.getRequestDispatcher("student_create.jsp").forward(request, response);
+			return;
+		}
 		//	入力された値が空だった場合エラー画面を表示
 		if (inputNo == null || inputNo.trim().isEmpty() ||
-				inputName == null || inputName.trim().isEmpty() ||
-				inputEntYear == null || inputClassNum == null) {
+				inputName == null || inputName.trim().isEmpty() || inputClassNum == null) {
 
 			//	エラーメッセージをsessionに保存する
 			request.getRequestDispatcher("student_create.jsp").forward(request, response);
+			return;
 		}
 
 		//	入力された学生番号が重複していた場合
 		//	DBに登録されている学生番号を取得し、ひとつずつ比較する
-		List<String> nos = cNumDAO.filter(teacher.getSchool());
-		for (String no : nos) {
-			if (inputNo == no) {
-				//	エラーを表示
-				request.getRequestDispatcher("student_create.jsp").forward(request, response);
-			}
+		Student s = sDAO.get(inputNo);
+		if (s != null) {
+			//	エラーを表示
+			errors.put("f4","学生番号が重複しています");
+			request.setAttribute("errors", errors);
+			request.getRequestDispatcher("student_create.jsp").forward(request, response);
+			return;
 		}
 
 		//	String型で取得したIDをint型に変換、できなかったらエラー画面を表示
@@ -59,6 +66,7 @@ public class StudentCreateExecuteAction extends Action {
 			inputEnt_Year = Integer.parseInt(inputEntYear);
 		} catch(Exception e) {
 			request.getRequestDispatcher("student_create.jsp").forward(request, response);
+			return;
 		}
 
 		// 更新を実行

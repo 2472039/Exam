@@ -11,7 +11,7 @@
 
 	<c:param name="content">
 <section class="me-4">
-<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
+<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績一覧（学生）</h2>
 <div class="row border mx-3 mb-3 py-2 align-items-center rounded d-flex" id="filter">
   <!-- 1つ目のフォーム -->
   <form action="/system/scoremanager/main/TestListSubjectExecute.action" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center">
@@ -21,7 +21,7 @@
     <div class="col-2">
       <label class="form-label" for="student-f1-select">入学年度</label>
       <select class="form-select" id="student-f1-select" name="ent_year">
-        <option value="0">--------</option>
+        <option value="">--------</option>
         <c:forEach var="year" items="${ent_year_set}">
           <option value="${year}" <c:if test="${year==entYearStr}">selected</c:if>>${year}</option>
         </c:forEach>
@@ -31,7 +31,7 @@
     <div class="col-2">
       <label class="form-label" for="student-f2-select">クラス</label>
       <select class="form-select" id="student-f2-select" name="class_num">
-        <option value="0">--------</option>
+        <option value="">--------</option>
         <c:forEach var="num" items="${class_num_set}">
           <option value="${num}" <c:if test="${num==classNum}">selected</c:if>>${num}</option>
         </c:forEach>
@@ -41,7 +41,7 @@
     <div class="col-3">
       <label class="form-label" for="student-f3-select">科目</label>
       <select class="form-select" id="student-f3-select" name="subject">
-        <option value="0">--------</option>
+        <option value="">--------</option>
         <c:forEach var="subject" items="${subject_list}">
           <option value="${subject.cd}" <c:if test="${subject.cd==subjectCd}">selected</c:if>>${subject.name}</option>
         </c:forEach>

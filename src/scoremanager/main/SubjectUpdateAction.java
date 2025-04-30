@@ -35,6 +35,7 @@ public class SubjectUpdateAction extends Action {
 
 			//	エラーメッセージをsessionに保存する
 			request.getRequestDispatcher("error.jsp").forward(request, response);
+			return;
 		}
 
 		//	詳細データ取得

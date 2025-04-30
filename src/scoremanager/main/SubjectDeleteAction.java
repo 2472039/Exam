@@ -26,6 +26,7 @@ public class SubjectDeleteAction extends Action {
 		if (cd == null) {
 			//	エラーメッセージをsessionに保存する
 			request.getRequestDispatcher("error.jsp").forward(request, response);
+			return;
 		}
 
 		//	詳細データ取得

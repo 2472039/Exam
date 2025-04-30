@@ -23,10 +23,11 @@
 
 <br>
 				科目コード<br>
-<input required type="text" name="cd" class="form-input" value=""><br>
+<input required type="text" name="cd" class="form-input" value="" required="required"><br>
+<div class="mt-2 text-warning">${errors.get("f6")}</div>
+<div class="mt-2 text-warning">${errors.get("f7")}</div><br>
 				科目名　<br>
-<input  required type="text" name="name" class="form-input" value="">
-
+<input  required type="text" name="name" class="form-input" value="" required="required">
 <br>
 </div>
 <input type="submit" value="登録"><br>
