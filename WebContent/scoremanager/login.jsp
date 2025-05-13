@@ -24,18 +24,7 @@
         <input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
         <label for="showPassword">パスワードを表示</label>
     </div>
-    <script>
-		function togglePasswordVisibility() {
-			let passwordInput = document.getElementById("password");
-			let showPasswordCheckbox = document.getElementById("showPassword");
 
-			if (showPasswordCheckbox.checked) {
-				passwordInput.type = "text";
-			} else {
-				passwordInput.type = "password";
-			}
-		}
-	</script>
     <div class="col-12 text-center mt-3">
       <button class="btn btn-secondary" id="filter-button">ログイン</button>
     </div>
