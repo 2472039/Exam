@@ -18,14 +18,24 @@
     <div class="col-12 text-center">
       <p>${errors.get("f2")}</p>
       <input type="text" name="id" class="form-control mb-3 w-100" placeholder="IDを入力してください">
-      <input type="password" name="password" class="form-control mb-3 w-100" placeholder="パスワードを入力してください">
+      <input type="password" name="password" id="password" class="form-control mb-3 w-100" placeholder="パスワードを入力してください">
     </div>
     <div class="col-12 text-center">
-      <label class="form-check-label" for="student-f3-check">
-        <input class="form-check-input" type="checkbox" id="student-f3-check" name="f3" value="t"
-        <c:if test="${!empty f3}">checked</c:if>> パスワードを表示
-      </label>
+        <input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
+        <label for="showPassword">パスワードを表示</label>
     </div>
+    <script>
+		function togglePasswordVisibility() {
+			let passwordInput = document.getElementById("password");
+			let showPasswordCheckbox = document.getElementById("showPassword");
+
+			if (showPasswordCheckbox.checked) {
+				passwordInput.type = "text";
+			} else {
+				passwordInput.type = "password";
+			}
+		}
+	</script>
     <div class="col-12 text-center mt-3">
       <button class="btn btn-secondary" id="filter-button">ログイン</button>
     </div>
