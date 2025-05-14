@@ -55,10 +55,6 @@
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
 					</div>
-<<<<<<< HEAD
-					<div class="mt-2 text-warning">${errors.get("f8")}</div>
-=======
->>>>>>> branch 'master' of https://github.com/2472039/Exam.git
 				</div>
 			</form>
 
