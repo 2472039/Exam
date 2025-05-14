@@ -23,7 +23,7 @@
 				学生番号<br>
 				<p>${no}</p><br>
 				氏名　<br>
-				<input type="text" name="inputName" value="${name}" required="required"><br>
+				<input type="text" name="inputName" value="${student.name}" required="required"><br>
 				クラス<br>
 				<select name="inputClassNum">
 				<c:forEach var="p" items="${class_num_set}">

@@ -56,7 +56,7 @@
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
 					</div>
-					<div class="mt-2 text-warning">${errors.get("f1")}</div>
+					<div class="mt-2 text-warning">${errors.get("f8")}</div>
 				</div>
 			</form>
 			<c:choose>

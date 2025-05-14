@@ -5,7 +5,9 @@
 package scoremanager.main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +33,7 @@ public class TestRegistExecuteAction extends Action {
 		Test test = new Test();
 		Student student = new Student();
 		Subject subject = new Subject();
+		Map<String, String> errors = new HashMap<>();
 
 		// 入力された値を取得
 		String inputStudentNo = request.getParameter("inputStudentNo");
@@ -76,6 +79,13 @@ public class TestRegistExecuteAction extends Action {
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 			return;
 		}
+
+		if (inputStudentNo == null || inputSubjectCd == null || input_No == 0 || input_Point == 0 || inputClassNum == null) {
+			errors.put("f8", "入学年度とクラスと科目と回数を選択してください");
+			request.setAttribute("errors", errors);
+		return;
+		}
+
 
 		// 更新を実行
 		student.setNo(inputStudentNo);
