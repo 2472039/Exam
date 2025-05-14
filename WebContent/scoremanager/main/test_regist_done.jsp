@@ -20,8 +20,8 @@
 				<br>
 				<br>
 				<br>
-				<a href="../main/student_list.jsp">戻る</a>
-				<a href="../main/student_list.jsp">成績登録</a>
+				<a href="/system/scoremanager/main/TestRegist.action">戻る</a>
+				<a href="/system/scoremanager/main/TestList.action">成績参照</a>
 				<br>
 				<br>
 				<br>

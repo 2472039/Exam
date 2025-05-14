@@ -4,7 +4,8 @@
 
 package scoremanager.main;
 
-//import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,9 +25,11 @@ public class SubjectCreateExecuteAction extends Action {
 		HttpSession session = request.getSession();
 		SubjectDAO sDAO = new SubjectDAO();
 		Subject subject = new Subject();
+		Map<String, String> errors = new HashMap<>();
+		Teacher teacher = (Teacher)session.getAttribute("user");
+		School school = teacher.getSchool();
 
 		// 入力された値を取得
-		Teacher teacher = (Teacher)session.getAttribute("user");
 		School school_cd = teacher.getSchool();
 		String inputCd = request.getParameter("cd");
 		String inputName = request.getParameter("name");
@@ -39,6 +42,25 @@ public class SubjectCreateExecuteAction extends Action {
 			//	エラーメッセージをsessionに保存する
 			request.getRequestDispatcher("subject_create.jsp").forward(request, response);
 		}
+
+		int count =inputCd.length();
+		if(count > 3 || count < 3){
+			errors.put("f6","科目コードは3文字で入力してください");
+			request.setAttribute("errors", errors);
+			request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+		}
+
+
+		//	入力された学生番号が重複していた場合
+		//	DBに登録されている学生番号を取得し、ひとつずつ比較する
+		Subject s = sDAO.get(inputCd,school);
+		if (s != null) {
+				//	エラーを表示
+				errors.put("f7","科目コードが重複しています");
+				request.setAttribute("errors", errors);
+				request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+				return;
+			}
 
 		// 更新を実行
 		subject.setSchool(school_cd);

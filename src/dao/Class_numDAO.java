@@ -30,13 +30,12 @@ public class Class_numDAO extends DAO {
 
 	        // SQL文を実行
 	        ResultSet rSet = statement.executeQuery();
-	        SchoolDAO sDao = new SchoolDAO();
 	        // 1件目のレコードを読み込む
 	        if (rSet.next()) {
 	            // クラス番号インスタンスを作成
 	        	classNum = new Class_num();
 	            classNum.setClass_num(rSet.getString("class_num"));
-	            classNum.setSchool_cd(sDao.get(rSet.getString("school_cd")));
+	            classNum.setSchool(school);
 	        } else {
 	            // レコードが存在しない場合はnullをセット
 	            classNum = null;
@@ -126,7 +125,7 @@ public class Class_numDAO extends DAO {
 
 	    try {
 	        // 既存のクラス情報を取得（存在確認）
-	        Class_num old = get(class_num.getClass_num(), class_num.getSchool_cd());
+	        Class_num old = get(class_num.getClass_num(), class_num.getSchool());
 
 	        if (old == null) {
 	            // 存在しない場合 → INSERT
@@ -134,13 +133,13 @@ public class Class_numDAO extends DAO {
 	                "insert into class_num(class_num, school_cd) values(?, ?)"
 	            );
 	            statement.setString(1, class_num.getClass_num());
-	            statement.setString(2, class_num.getSchool_cd().getCd());
+	            statement.setString(2, class_num.getSchool().getCd());
 	        } else {
 	            // 存在する場合 → UPDATE（更新内容があるなら）
 	            statement = connection.prepareStatement(
 	                "update class_num set school_cd=? where class_num=?"
 	            );
-	            statement.setString(1, class_num.getSchool_cd().getCd());
+	            statement.setString(1, class_num.getSchool().getCd());
 	            statement.setString(2, class_num.getClass_num());
 	        }
 

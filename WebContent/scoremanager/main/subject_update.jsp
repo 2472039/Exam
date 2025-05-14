@@ -16,15 +16,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 				<div class="container2">
-<form action="/system/scoremanager/main/SubjectUpdateExecute.action" method="post">
+<form action="SubjectUpdateExecute.action" method="post">
 <div class="row mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 科目コード<br>
 
-
-<p>${subject.cd}</p>
-<div class="mt-2 text-warning">${errors.get("f2")}</div>
+<p>${subject.cd}</p><br>
 				科目名<br>
-<input  required type="text" name="name" class="form-input"  value="${name}">
+<input type="text" name="name" class="form-input"  value="${subject.name}" required="required">
+
 <br>
 </div>
 <input type="submit" value="変更"><br>
