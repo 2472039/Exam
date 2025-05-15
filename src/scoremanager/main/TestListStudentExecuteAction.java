@@ -34,6 +34,7 @@ public class TestListStudentExecuteAction extends Action {
 		}
 
 		session.setAttribute("student", student);
+		req.setAttribute("student_no", studentNo);
 
 
 		// フォワード
