@@ -4,14 +4,10 @@
 
 package scoremanager.main;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-=======
->>>>>>> branch 'master' of https://github.com/2472039/Exam.git
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,6 +43,13 @@ public class TestRegistExecuteAction extends Action {
 		String inputPoint = request.getParameter("point");
 
 
+		if (inputEntYear == 0 || inputSubjectCd == null || inputNo == 0 ||  inputClassNum == null) {
+			errors.put("f8", "入学年度とクラスと科目と回数を選択してください");
+			request.setAttribute("errors", errors);
+			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
+		return;
+		}
+
 	//	String型で取得したIDをint型に変換、できなかったらエラー画面を表示
 		int input_Point = 0;
 		try {
@@ -55,12 +58,6 @@ public class TestRegistExecuteAction extends Action {
 			System.out.println(inputPoint);
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 			return;
-		}
-
-		if (inputStudentNo == null || inputSubjectCd == null || input_No == 0 || input_Point == 0 || inputClassNum == null) {
-			errors.put("f8", "入学年度とクラスと科目と回数を選択してください");
-			request.setAttribute("errors", errors);
-		return;
 		}
 
 
@@ -90,4 +87,3 @@ public class TestRegistExecuteAction extends Action {
 
 	}
 }
-
