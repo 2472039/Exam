@@ -52,9 +52,12 @@
       <button class="btn btn-secondary" id="filter-button">検索</button>
     </div>
   </form>
+    <div class="align-items-center">
+  	<hr class="my-3 ">
+  </div>
 
   <!-- 2つ目のフォーム -->
-  <form action="/system/scoremanager/main/TestListStudentExecute.action" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center mt-4">
+  <form action="/system/scoremanager/main/TestListStudentExecute.action" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center">
     <div class="col-3">
       <label class="form-label" for="student-f1-select">学生情報</label>
     </div>

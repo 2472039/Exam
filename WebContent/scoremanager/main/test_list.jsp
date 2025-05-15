@@ -11,7 +11,7 @@
 
 	<c:param name="content">
 <section class="me-4">
-<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
+<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
 
 
 
@@ -56,9 +56,12 @@
     </div>
     <div class="mt-2 text-warning">${errors.get("f5")}</div>
   </form>
+  <div class="align-items-center">
+  	<hr class="my-3 ">
+  </div>
 
   <!-- 2つ目のフォーム -->
-  <form action="/system/scoremanager/main/TestListStudentExecute.action" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center mt-4">
+  <form action="/system/scoremanager/main/TestListStudentExecute.action" method="get" class="d-flex flex-wrap w-100 justify-content-between align-items-center">
     <div class="col-3">
       <label class="form-label" for="student-f1-select">学生情報</label>
     </div>
@@ -74,6 +77,7 @@
     </div>
   </form>
 </div>
+ <p class="text-info">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
 
 </section>
 </c:param>

@@ -28,19 +28,11 @@
 				<div class="mt-2 text-warning">${errors.get("f3")}</div>
 				<br>
 				学生番号<br>
-<<<<<<< HEAD
 				<input type="text" name="inputNo" class="form-input" required="required"  placeholder="学生番号を入力してください。" value="${inputNo}">
-=======
-				<input type="text" name="inputNo" class="form-input" required="required"  placeholder="学生番号を入力してください。">
->>>>>>> branch 'master' of https://github.com/2472039/Exam.git
 				<br><div class="mt-2 text-warning">${errors.get("f4")}</div>
 				<br>
 				氏名　<br>
-<<<<<<< HEAD
 				<input type="text" name="inputName" class="form-input" required="required" placeholder="氏名を入力してください。" value="${inputName}"><br>
-=======
-				<input type="text" name="inputName" class="form-input" required="required" placeholder="氏名を入力してください。"><br>
->>>>>>> branch 'master' of https://github.com/2472039/Exam.git
 				クラス<br>
 				<select name="inputClassNum" class="form-select">
 				<c:forEach var="p" items="${class_num_set}">

@@ -13,17 +13,18 @@
 
 
 <form action="/system/scoremanager/LoginExecute.action" method="post">
-  <div class="row border mx-3 mb-3 py-4 align-items-center rounded text-center" id="filter">
-    <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 text-center rounded">ログイン</h2>
+  <div class="row border mx-3 mb-3 pb-4 align-items-center rounded text-center" id="filter">
+    <h2 class="h3 mb-3 mt-0 fw-normal bg-secondary bg-opacity-10 py-2 px-4 text-center rounded">ログイン</h2>
     <div class="col-12 text-center">
       <p>${errors.get("f2")}</p>
-<<<<<<< HEAD
-      <input required type="text" name="id" class="form-control mb-3 w-100" placeholder="IDを入力してください">
-      <input required type="password" name="password" id="password" class="form-control mb-3 w-100" placeholder="パスワードを入力してください">
-=======
-      <input type="text" name="id" class="form-control mb-3 w-100" value="${id}" placeholder="IDを入力してください">
-      <input type="password" name="password" id="password" class="form-control mb-3 w-100" placeholder="パスワードを入力してください">
->>>>>>> branch 'master' of https://github.com/2472039/Exam.git
+      <div class="form-floating mb-3">
+      <input type="text" name="id" class="form-control mb-3 w-100" id="floatingID" value="${id}" placeholder="IDを入力してください">
+      <label for="floatingID">ID</label>
+	</div>
+	<div class="form-floating mb-3">
+      <input type="password" name="password" id="password floatingPassword" class="form-control mb-3 w-100" placeholder="パスワードを入力してください">
+      <label for="floatingPassword">パスワード</label>
+	</div>
     </div>
     <div class="col-12 text-center">
         <input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
@@ -42,7 +43,7 @@
 		}
 	</script>
     <div class="col-12 text-center mt-3">
-      <button class="btn btn-secondary" id="filter-button">ログイン</button>
+      <button class="btn btn-secondary bg-primary" id="filter-button">ログイン</button>
     </div>
   </div>
 </form>

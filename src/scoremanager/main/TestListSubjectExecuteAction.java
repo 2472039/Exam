@@ -38,7 +38,7 @@ public class TestListSubjectExecuteAction extends Action {
 		String subject_cd = req.getParameter("subject");
 		Subject subject = sDAO.get(subject_cd, school);
 
-		if (entYearStr == null || class_num == null || subject == null) {
+		if (entYearStr.equals("0") || class_num.equals("0") || subject == null) {
 			errors.put("f5","入学年度とクラスと科目を選択してください");
 			req.setAttribute("errors", errors);
 			req.getRequestDispatcher("test_list.jsp").forward(req, res);
