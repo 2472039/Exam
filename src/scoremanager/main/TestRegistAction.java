@@ -62,6 +62,7 @@ public class TestRegistAction extends Action {
 			session.setAttribute("entYear", entYear);
 			session.setAttribute("class_num", class_num);
 			session.setAttribute("subject", subject);
+			session.setAttribute("subject_cd", subject_cd);
 			session.setAttribute("no", no);
 			session.setAttribute("test",test);
 		}

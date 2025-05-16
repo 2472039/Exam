@@ -18,7 +18,8 @@
 <div class="row mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 <br><p>${subject.name}を削除してもよろしいですか</p>
 </div>
-<input type="submit" value="削除"><br>
+
+<button type="submit" class="btn btn-danger">削除</button><br>
 <a href="../main/subject_list.jsp">戻る</a>
 </form>
 </div>

@@ -18,11 +18,11 @@
     <div class="col-12 text-center">
       <p>${errors.get("f2")}</p>
       <div class="form-floating mb-3">
-      <input type="text" name="id" class="form-control mb-3 w-100" id="floatingID" value="${id}" placeholder="IDを入力してください">
+      <input type="text" name="id" class="form-control mb-3 w-100" id="floatingID" value="${id}" placeholder="IDを入力してください" required="required">
       <label for="floatingID">ID</label>
 	</div>
 	<div class="form-floating mb-3">
-      <input type="password" name="password" id="floatingPassword" class="form-control mb-3 w-100" placeholder="パスワードを入力してください">
+      <input type="password" name="password" id="floatingPassword" class="form-control mb-3 w-100" placeholder="パスワードを入力してください" required="required">
       <label for="floatingPassword">パスワード</label>
 	</div>
     </div>
