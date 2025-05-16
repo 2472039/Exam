@@ -4,7 +4,6 @@
 
 package scoremanager.main;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,47 +42,46 @@ public class TestRegistExecuteAction extends Action {
 		String inputPoint = request.getParameter("point");
 
 
-		if (inputEntYear == 0 || inputSubjectCd == null || inputNo == 0 ||  inputClassNum == null) {
-			errors.put("f8", "入学年度とクラスと科目と回数を選択してください");
-			request.setAttribute("errors", errors);
-			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
-		return;
-		}
-
 	//	String型で取得したIDをint型に変換、できなかったらエラー画面を表示
 		int input_Point = 0;
 		try {
 			input_Point = Integer.parseInt(inputPoint);
 		} catch(Exception e) {
-			System.out.println(inputPoint);
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			errors.put("f2", "0～100の範囲で入力してください。");
+			request.setAttribute("errors", errors);
+			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 			return;
 		}
 
-
-		// 更新を実行
-		student.setEnt_year(inputEntYear);
-		test.setClass_num(inputClassNum);
-		student.setNo(studentNo);
-		subject.setCd(inputSubjectCd);
-		test.setPoint(input_Point);
-		test.setNo(inputNo);
-		test.setStudent(student);
-		test.setSubject(subject);
-		test.setSchool(teacher.getSchool());
-		boolean b = tDAO.save(test);
-
-		// 更新が成功したら完了画面、失敗したらエラー画面を表示
-		if (b) {
-			session.removeAttribute("entYear");
-			session.removeAttribute("class_num");
-			session.removeAttribute("subject_cd");
-			session.removeAttribute("no");
-			session.removeAttribute("test");
-			request.getRequestDispatcher("test_regist_done.jsp").forward(request, response);
-		} else {
+		if (input_Point < 0 || input_Point > 100 || inputPoint == null) {
+			errors.put("f2", "0～100の範囲で入力してください。");
+			request.setAttribute("errors", errors);
 			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
-		}
+		} else {
 
+			// 更新を実行
+			student.setEnt_year(inputEntYear);
+			test.setClass_num(inputClassNum);
+			student.setNo(studentNo);
+			subject.setCd(inputSubjectCd);
+			test.setPoint(input_Point);
+			test.setNo(inputNo);
+			test.setStudent(student);
+			test.setSubject(subject);
+			test.setSchool(teacher.getSchool());
+			boolean b = tDAO.save(test);
+
+			// 更新が成功したら完了画面、失敗したらエラー画面を表示
+			if (b) {
+				session.removeAttribute("entYear");
+				session.removeAttribute("class_num");
+				session.removeAttribute("subject_cd");
+				session.removeAttribute("no");
+				session.removeAttribute("test");
+				request.getRequestDispatcher("test_regist_done.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("test_regist.jsp").forward(request, response);
+			}
+		}
 	}
 }

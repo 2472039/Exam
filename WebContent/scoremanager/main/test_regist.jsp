@@ -62,7 +62,7 @@
 			<c:choose>
 				<c:when test="${test.size()>0}">
 				<form action="/system/scoremanager/main/TestRegistExecute.action" method="get">
-					<div>科目：${entYear}(${no}回)</div>
+					<div>科目：${subject.name}(${no}回)</div>
 					<table class="table table-hover">
 						<tr>
 							<th>入学年度</th>

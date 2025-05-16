@@ -98,7 +98,7 @@
 				</c:when>
 				<c:otherwise>
 					<div>氏名：大原太郎(${student_no})</div>
-					<div>学生情報が存在しませんでした</div>
+					<div>成績情報が存在しませんでした</div>
 				</c:otherwise>
 			</c:choose>
 		</section>

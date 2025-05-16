@@ -22,7 +22,7 @@
       <label for="floatingID">ID</label>
 	</div>
 	<div class="form-floating mb-3">
-      <input type="password" name="password" id="password floatingPassword" class="form-control mb-3 w-100" placeholder="パスワードを入力してください">
+      <input type="password" name="password" id="floatingPassword" class="form-control mb-3 w-100" placeholder="パスワードを入力してください">
       <label for="floatingPassword">パスワード</label>
 	</div>
     </div>
@@ -32,7 +32,7 @@
     </div>
     <script>
 		function togglePasswordVisibility() {
-			let passwordInput = document.getElementById("password");
+			let passwordInput = document.getElementById("floatingPassword");
 			let showPasswordCheckbox = document.getElementById("showPassword");
 
 			if (showPasswordCheckbox.checked) {

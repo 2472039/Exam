@@ -61,7 +61,7 @@ public class TestRegistAction extends Action {
 			List<Test> test = testDao.filter(entYear, class_num, no,subject, school);
 			session.setAttribute("entYear", entYear);
 			session.setAttribute("class_num", class_num);
-			session.setAttribute("subject_cd", subject_cd);
+			session.setAttribute("subject", subject);
 			session.setAttribute("no", no);
 			session.setAttribute("test",test);
 		}
