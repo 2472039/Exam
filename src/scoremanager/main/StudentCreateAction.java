@@ -22,9 +22,9 @@ public class StudentCreateAction extends Action {
 
 		HttpSession session=req.getSession();
 
+		//	今日の日付を取得し過去十年のリストを作成
 		LocalDate todaysDate = LocalDate.now();
 		int year = todaysDate.getYear();
-
 		List<Integer> entYearSet = new ArrayList<>();
 		for (int i = year - 10; i < year + 10; i++) {
 			entYearSet.add(i);

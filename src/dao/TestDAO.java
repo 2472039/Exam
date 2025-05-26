@@ -14,7 +14,6 @@ import bean.Test;
 
 public class TestDAO extends DAO {
 
-    private String baseSql="select * from student where school_cd=?";
     public Test get(Student student, Subject subject, School school, int no) throws Exception {
         // インスタンスを初期化
         Test test = new Test();

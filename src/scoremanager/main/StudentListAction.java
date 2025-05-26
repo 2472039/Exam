@@ -37,7 +37,7 @@ public class StudentListAction extends Action {
 		Class_numDAO cNumDAO = new Class_numDAO();
 		Map<String, String> errors = new HashMap<>();
 
-//		sessionから値を取得
+//		requestから値を取得
 		entYearStr = req.getParameter("f1");
 		classNum = req.getParameter("f2");
 		isAttendStr = req.getParameter("f3");
@@ -57,6 +57,7 @@ public class StudentListAction extends Action {
 
 		List<String> list = cNumDAO.filter(teacher.getSchool());
 
+		//	入力された条件により分岐し検索
 		if (entYear != 0 && classNum != null && !"0".equals(classNum)) {
 			students = sDAO.filter(teacher.getSchool(), entYear, classNum, isAttend);
 		} else if (entYear != 0 && "0".equals(classNum)) {
@@ -69,6 +70,7 @@ public class StudentListAction extends Action {
 			students = sDAO.filter(teacher.getSchool(), isAttend);
 		}
 
+		//	sessionに値を保存
 		session.setAttribute("f1", entYear);
 		session.setAttribute("f2", classNum);
 		session.setAttribute("f3", isAttend);
